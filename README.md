@@ -10,10 +10,9 @@ Utilizaremos nesse desafio uma API RESTful com os seguintes recursos:
 **/quotes** que retorna json no formato:
 ```json
 {
-  "quotes": [
-      "quote 1.",
-      "quote 2.",
-      [...]
+  "quotes": [
+    "quote 1.",
+    "quote 2."
   ]
 }
 ```
@@ -21,7 +20,7 @@ Utilizaremos nesse desafio uma API RESTful com os seguintes recursos:
 **/quotes/<quote_number>** que retorna json no formato:
 ```json
 {
-  "quote": "Aqui está o quose numero quote_number."
+  "quote": "Aqui está o quose numero quote_number."
 }
 ```
 
@@ -29,7 +28,7 @@ Exemplo:
 GET /quotes/2
 ```json
 {
-  "quote": "quote 2."
+  "quote": "quote 2."
 }
 ```
 
