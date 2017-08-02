@@ -1,7 +1,10 @@
 from pyramid.response import Response
 from pyramid.view import view_config
+from sqlalchemy.orm import sessionmaker
+
 from prova import Prova
 from uuid import uuid4
+from models import models
 import random
 
 
@@ -10,8 +13,17 @@ class MyViews:
         self.request = request
         self.session = request.session
 
+        # Initializing DB
+        DBSession = sessionmaker(bind=models.init())  # TODO: arrumar init para ser singleton
+        session = DBSession()
+
         if not self.session:
             self.session['user'] = uuid4()
+
+        # Creating model and inserting it on the db
+        log_entry = models.Log(session_id=str(self.session['user']), date_time=None)
+        session.add(log_entry)
+        session.commit()
 
     @view_config(route_name='quotes:id', renderer='json')
     def get_quotes(self):
