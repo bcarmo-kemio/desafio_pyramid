@@ -3,7 +3,7 @@ import static
 import json
 
 
-class Prova:
+class DesafioAPI:
     @staticmethod
     def do_request(quote_number=""):
         url = static.BASE_API_URL

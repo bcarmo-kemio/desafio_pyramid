@@ -1,9 +1,8 @@
-from datetime import datetime, timedelta
-from sqlalchemy import Table, Column, Integer, String, DateTime, ForeignKey, create_engine
+from datetime import datetime
+from sqlalchemy import Table, Column, Integer, String, DateTime, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
-
 tags = Table()
 
 
@@ -12,14 +11,22 @@ class Log(Base):
     __tablename__ = 'logs'
 
     id          =   Column(Integer, primary_key=True)
-    session_id  =   Column(String(36), nullable=False)
-    date_time   = Column(DateTime, default=datetime.utcnow)
+    session_id  =   Column(String(36))
+    date_time   =   Column(DateTime, default=datetime.utcnow)
+    page        =   Column(String(50))
+
+    def __str__(self):
+        return 'Sessão: {0},  Data: {1}, Consulta: {2}'.format(self.session_id, self.date_time.strftime('%m/%d/%Y - '
+                                                                                                    '%Hh%M'),
+                                                 self.page)
 
 
 def init():
     # Create an engine that stores data in the local directory's
     # sqlalchemy_example.db file.
     engine = create_engine('sqlite:///sqlalchemy_example.db')
+
+    Base.metadata.bind = engine
 
     # Create all tables in the engine. This is equivalent to "Create Table"
     # statements in raw SQL.
