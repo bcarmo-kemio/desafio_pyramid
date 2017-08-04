@@ -72,13 +72,11 @@ class MyViews:
             html = '<li>{0}</li>'.format(str(resp))
             return Response(html)
 
-        elif operation == 'delete':
-            c = 3
-
     @view_config(route_name='sessions-logs')
     def sessions_logs(self):
         operation = self.request.matchdict.get('operation')
 
+        # TODO: Come up with a better way to do this:
         if operation == 'list':
             resp = DbManager().query(Log).all()
             if resp is None:
@@ -90,7 +88,3 @@ class MyViews:
             html += '</ul>'
 
             return Response(html)
-
-        elif operation == 'delete':
-            c = 3
-
