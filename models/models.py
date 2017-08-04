@@ -16,9 +16,9 @@ class Log(Base):
     page        =   Column(String(50))
 
     def __str__(self):
-        return 'Sessão: {0},  Data: {1}, Consulta: {2}'.format(self.session_id, self.date_time.strftime('%m/%d/%Y - '
-                                                                                                    '%Hh%M'),
-                                                 self.page)
+        model = 'Sessão: {0},  Data: {1}, Consulta: {2}'
+        formated_date = self.date_time.strftime('%m/%d/%Y - %Hh%M')
+        return model.format(self.session_id, formated_date , self.page)
 
 
 def init():

@@ -1,5 +1,6 @@
+from pyramid.httpexceptions import HTTPNotFound
 from pyramid.response import Response
-from pyramid.view import view_config
+from pyramid.view import view_config, notfound_view_config
 from requests import HTTPError
 
 from db import DbManager
@@ -88,3 +89,7 @@ class MyViews:
             html += '</ul>'
 
             return Response(html)
+
+    @notfound_view_config(append_slash=True)
+    def notfound(request):
+        return HTTPNotFound()
