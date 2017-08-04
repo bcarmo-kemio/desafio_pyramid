@@ -59,3 +59,24 @@ Utilizando SQLAlchemy + sqlite criar modelo/modelos para registrar:
 Desafio nível 4:
 ---
 Criar endpoints RESTful para visualização das sessões/consultas.
+
+Rotas Implementadas
+===
+
+Hello:
+- Hello World:
+    - /
+
+Quotes:
+- Listar todas:
+    - /quotes/
+- Listar Específica:
+    - /quotes/{id}
+- Listar Randômica:
+    - /quotes/random/
+
+Logs:
+- Listar todos:
+    - /logs/list
+- Listar Específico:
+    - /logs/list/{id}
